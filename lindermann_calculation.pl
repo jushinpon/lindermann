@@ -10,7 +10,7 @@ chdir("..");
 my $mainPath = getcwd();# main path of Perl4dpgen dir
 chdir("$currentPath");
 
-my $lindermannX = "$currentPath"; #lindermann executable path
+my $lindermannX = "/opt/lindermann"; #lindermann executable path
 
 `rm -rf $currentPath/temp`;#remove old temp folder first
 my @all_folders = `find $currentPath -mindepth 1 -maxdepth 1 -type d `;
