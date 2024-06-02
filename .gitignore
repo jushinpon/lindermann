@@ -1,0 +1,13 @@
+*.log
+nohup.out
+*/*
+*.txt
+*.out
+*.dat
+test*.pl
+*test.pl
+test*
+*.o
+Temp*
+temp*
+*.x
