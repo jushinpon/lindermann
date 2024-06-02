@@ -10,7 +10,7 @@ integer, allocatable::atype(:)
 integer startStep, endStep, incStep, startT, endT, incT 
 character*128 filename
 
-open(22, file='./linder_input.dat', status='old')
+open(22, file='./lindemann_input.dat', status='old')
 read(22, *) 
 read(22, *) natom
 read(22, *) 
@@ -32,7 +32,7 @@ close(22)
 Denominator = (natom - 1)
 part1 = 1.0 / dble(Denominator)
 
-open(101, file='Temp_linder.dat', status='unknown')
+open(101, file='Temp_lindemann.dat', status='unknown')
 write(101, *) "Total atom number: ", natom
 
 nthreads = totalfile

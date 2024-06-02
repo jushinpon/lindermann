@@ -10,7 +10,8 @@ chdir("..");
 my $mainPath = getcwd();# main path of Perl4dpgen dir
 chdir("$currentPath");
 
-my $lindermannX = "/opt/lindermann"; #lindermann executable path
+#my $lindermannX = "./lindemann.x"; #lindermann executable path
+my $lindermannX = "/opt/lindemann/lindemann.x"; #lindermann executable path
 
 `rm -rf $currentPath/temp`;#remove old temp folder first
 my @all_folders = `find $currentPath -mindepth 1 -maxdepth 1 -type d|grep -v .git `;
@@ -53,7 +54,7 @@ for my $fold (@all_folders){
     my $endStep = $all_step[-1];
     my $incStep = $all_step[1] - $all_step[0];
 
-    `rm -f linder_input.dat`;
+    `rm -f lindemann_input.dat`;
 #print "myfile: $file\n";
 my $lind_input = <<"END_MESSAGE";
 total atoms in a cfg file:
@@ -75,17 +76,20 @@ $incStep
 
 END_MESSAGE
 
-    open(FH, '>', "linder_input.dat") or die $!;
+    open(FH, '>', "lindemann_input.dat") or die $!;
     print FH $lind_input;
-    close(FH);
-   die;
+    close(FH);  
     sleep(1);
-    system("$lindermannX/lindermann.x");
+    system("$lindermannX");
+    sleep(1);
+    system("perl lindemann_analysis.pl");
+    sleep(1);
    # my $data_path = `dirname $id`;
    # $data_path =~ s/^\s+|\s+$//g;
     my $foldername = `basename $fold`;
     $foldername =~ s/^\s+|\s+$//g;
-    `mv Temp_linder.csv Temp_linder_$foldername.csv`
+    `mv Temp_lindemann.dat $foldername-local_lindemann.dat`;
+    `mv lindemann_results.csv $foldername-lindemann_results.csv`;
+    `rm -rf $currentPath/temp`;
+    `rm -f $currentPath/lindemann_input.dat`;
 }
-#`rm -rf $currentPath/temp`;
-#`rm -f $currentPath/linder_input.dat`;
