@@ -13,11 +13,12 @@ chdir("$currentPath");
 my $lindermannX = "/opt/lindermann"; #lindermann executable path
 
 `rm -rf $currentPath/temp`;#remove old temp folder first
-my @all_folders = `find $currentPath -mindepth 1 -maxdepth 1 -type d `;
+my @all_folders = `find $currentPath -mindepth 1 -maxdepth 1 -type d|grep -v .git `;
 map { s/^\s+|\s+$//g; } @all_folders;
 my $job_count = 0;
 my $total_jobs = @all_folders;
 for my $fold (@all_folders){
+    print "$fold\n";
     $job_count++;
     print "*** Calculating Temperature-Lindermann profile for $fold ($job_count/$total_jobs)\n";
     my @temp = `find $fold -mindepth 1 -maxdepth 1 -type f -name "*_*_*.cfg"|sort `;
@@ -77,6 +78,7 @@ END_MESSAGE
     open(FH, '>', "linder_input.dat") or die $!;
     print FH $lind_input;
     close(FH);
+   die;
     sleep(1);
     system("$lindermannX/lindermann.x");
    # my $data_path = `dirname $id`;

@@ -31,6 +31,8 @@ read(22,*) incStep
 close(22)
 
 open(101,file='Temp_linder.csv',status='unknown')
+write(101,*) "Total atom number: ",natom
+
 nthreads = totalfile
 
 call omp_set_num_threads(nthreads)
@@ -83,8 +85,8 @@ do 1 i = startT,endT,incT
 	2 continue
 
 	omptotalfile(:) = dble(totalfile)
-	do 1000 l=1,natom-1
-		do 1002 m=l+1,natom
+	do 1000 l=1,natom
+		do 1002 m=1,natom
 			distance=0.0
 			totaldis=0.0
 			totaldis2=0.0
