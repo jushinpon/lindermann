@@ -82,7 +82,7 @@ END_MESSAGE
     sleep(1);
     system("$lindermannX");
     sleep(1);
-    system("perl lindemann_analysis.pl");
+    system("perl /opt/lindermann/lindemann_analysis.pl");
     sleep(1);
    # my $data_path = `dirname $id`;
    # $data_path =~ s/^\s+|\s+$//g;
