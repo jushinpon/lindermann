@@ -9,7 +9,7 @@ my $currentPath = getcwd();# dir for all scripts
 chdir("..");
 my $mainPath = getcwd();# main path of Perl4dpgen dir
 chdir("$currentPath");
-my $sour = "Temp_linder.dat";
+my $sour = "Temp_lindemann.dat";
 my $natom = `grep "Total atom number:" ./$sour|awk '{print \$4}'`;
 $natom =~ s/^\s+|\s+$//g;
 
