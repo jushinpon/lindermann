@@ -11,8 +11,8 @@ my $mainPath = getcwd();# main path of Perl4dpgen dir
 chdir("$currentPath");
 
 #my $lindermannX = "./lindemann.x"; #lindermann executable path
-my $lindermannX = "/opt/lindermann/lindemann.x"; #lindermann executable path
-
+#my $lindermannX = "/opt/lindermann/lindemann.x"; #lindermann executable path
+my $lindermannX = "/opt/lindermann/lindermann_gpt.x";# less memory usage, more stable
 `rm -rf $currentPath/temp`;#remove old temp folder first
 my @all_folders = `find $currentPath -mindepth 1 -maxdepth 1 -type d|grep -v .git `;
 map { s/^\s+|\s+$//g; } @all_folders;
